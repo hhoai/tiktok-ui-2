@@ -8,6 +8,7 @@ function HeaderOnly({children}) {
         <div className="content">
           {children}
         </div>
+        
       </div>
     </div>
    );
