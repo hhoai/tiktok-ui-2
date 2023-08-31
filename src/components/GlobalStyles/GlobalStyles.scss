@@ -33,6 +33,8 @@ body {
 button, input, [tabindex] {
   border: none;
   outline: none;
+  color: var(--text-color);
+
 }
 
 a[href] {

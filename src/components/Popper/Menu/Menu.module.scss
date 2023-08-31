@@ -1,0 +1,22 @@
+// menu wrapper
+.menu-list {
+  width: 224px;
+  height: fit-content;
+  .menu-item{
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-left: 0;
+    width: 100%;
+    padding: 12px;
+    &:hover {
+      background: rgba(22, 24, 35, 0.04);
+    }
+
+  }
+  .menu-popper {
+    // padding: 8px 0px;
+  }
+}
+
+//menu items

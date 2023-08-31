@@ -9,10 +9,27 @@ import AccountItem from "./../../../AccountItems";
 import Button from "~/components/Button";
 
 import { IoIosCloseCircle } from "react-icons/io";
-import { BiLoaderCircle, } from "react-icons/bi";
-import { FaSearch } from "react-icons/fa";
+import { BiLoaderCircle, BiDotsVerticalRounded } from "react-icons/bi";
+import { FaSearch, FaLanguage, FaQuestionCircle, FaKeyboard } from "react-icons/fa";
+import Menu from "~/components/Popper/Menu";
 
 const cx = classNames.bind(styles);
+
+const MENU_ITEMS = [
+  {
+    icon: <FaLanguage/>,
+    title: "English",
+  },
+  {
+    icon: <FaQuestionCircle/>,
+    title: "Feedback and help",
+    to: "/feedback"
+  },
+  {
+    icon: <FaKeyboard/>,
+    title: "Keyboard shortcuts",
+  }
+]
 
 function Header() {
   const [searchResult, setSearchResult] = useState([]);
@@ -72,6 +89,14 @@ function Header() {
         <div className={cx("actions")}>
           <Button text>Upload</Button>
           <Button primary>Log in</Button>
+          <Menu
+            items ={MENU_ITEMS}
+            >
+            <button className={cx("btn-more")}>
+              <BiDotsVerticalRounded />
+            </button>
+          </Menu>
+
 
         </div>
       </div>
