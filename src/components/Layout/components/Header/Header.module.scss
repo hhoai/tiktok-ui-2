@@ -13,6 +13,15 @@
     .logo:hover {
       cursor: pointer;
     }
+    .search-result {
+      width: 361px;
+      .search-title {
+        color:rgba(22, 24, 35, .5);
+        font-size: 1.4rem;
+        font-weight: 600;
+        padding: 5px 12px;
+      }
+    }
     .search {
       position: relative;
       width: 361px;
