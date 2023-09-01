@@ -4,6 +4,8 @@
   align-items: center;
   .container {
     width: var(--default-layout-width);
+    padding: 0px var(--default-layout-horizontal-spacer);
+
     min-height: 200px;
     display: flex;
     .content {

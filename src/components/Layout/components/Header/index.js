@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import Tippy from "@tippyjs/react/headless";
+import HeadlessTippy from "@tippyjs/react/headless";
+import Tippy from "@tippyjs/react";
 import 'tippy.js/dist/tippy.css';
 
 import classNames from "classnames/bind";
@@ -7,26 +8,44 @@ import styles from "./Header.module.scss";
 import { Wrapper as PopperWrapper } from "~/components/Popper";
 import AccountItem from "./../../../AccountItems";
 import Button from "~/components/Button";
-
-import { IoIosCloseCircle } from "react-icons/io";
-import { BiLoaderCircle, BiDotsVerticalRounded } from "react-icons/bi";
-import { FaSearch, FaLanguage, FaQuestionCircle, FaKeyboard } from "react-icons/fa";
 import Menu from "~/components/Popper/Menu";
+
+import { AiOutlineCloudUpload, AiOutlineQuestionCircle } from "react-icons/ai";
+import { BiLoaderCircle, BiBookmark, BiUser, BiDotsVerticalRounded, BiMessageAltDetail } from "react-icons/bi";
+import { IoIosCloseCircle,IoIosLogOut  } from "react-icons/io";
+import { IoPaperPlaneOutline, IoSettingsOutline } from "react-icons/io5";
+import { FaSearch, FaRegKeyboard } from "react-icons/fa";
+import { TbMessageLanguage } from "react-icons/tb";
 
 const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
   {
-    icon: <FaLanguage/>,
+    icon: <TbMessageLanguage/>,
     title: "English",
+    children: {
+      title: "English",
+      data: [
+        {
+          type: "language",
+          code: "en",
+          title: "English",
+        },
+        {
+          type: "language",
+          code: "vi",
+          title: "Vietnamese",
+        }
+      ]}
+    
   },
   {
-    icon: <FaQuestionCircle/>,
+    icon: <AiOutlineQuestionCircle/>,
     title: "Feedback and help",
     to: "/feedback"
   },
   {
-    icon: <FaKeyboard/>,
+    icon: <FaRegKeyboard/>,
     title: "Keyboard shortcuts",
   }
 ]
@@ -34,9 +53,47 @@ const MENU_ITEMS = [
 function Header() {
   const [searchResult, setSearchResult] = useState([]);
 
+  const currentUser = true;
+
   useEffect(() => {
     setTimeout(() => {setSearchResult([])}, 3000);
   }, []);
+
+  //handle logic
+  const handleMenuChange = (menuItem) => {
+    switch (menuItem.type) {
+      case "language": 
+        // handle change language
+        break;
+      default: 
+    }
+    console.log(menuItem);
+  }
+
+  const userMenu = [
+    {
+      icon: <BiUser/>,
+      title: "View profile",
+      to: "/user/profile"
+    },
+    {
+      icon: <BiBookmark/>,
+      title: "Favorites",
+      to: "/user/favorites"
+    },
+    {
+      icon: <IoSettingsOutline/>,
+      title: "Settings",
+      to: "/settings"
+    },
+    ...MENU_ITEMS,
+    {
+      icon: <IoIosLogOut/>,
+      title: "Log out",
+      to: "/logout",
+      separate: true,
+    }
+  ]
 
   return (
     <header className={cx("wrapper")}>
@@ -53,7 +110,7 @@ function Header() {
             <path fill="black" d="M91.58 28.887a3.94 3.94 0 0 1-3.94-3.945 3.94 3.94 0 1 1 7.882 0c0 2.18-1.77 3.945-3.942 3.945Zm0-12.058c-4.477 0-8.106 3.631-8.106 8.113 0 4.482 3.629 8.113 8.106 8.113 4.478 0 8.106-3.631 8.106-8.113 0-4.482-3.628-8.113-8.106-8.113Z"></path>
           </svg>  
         </div>
-        <Tippy
+        <HeadlessTippy
           interactive
           visible={searchResult.length > 0}
           render = {atts => (
@@ -85,19 +142,50 @@ function Header() {
             <FaSearch />
             </button>
           </div>
-        </Tippy>
+        </HeadlessTippy>
+
         <div className={cx("actions")}>
-          <Button text>Upload</Button>
-          <Button primary>Log in</Button>
+          {currentUser ? ( 
+            <>
+              <Tippy content="Upload video" placement="bottom">
+                <button className={cx("action-btn")}>
+                  <AiOutlineCloudUpload />
+                </button>
+              </Tippy>
+
+              <Tippy content="Inbox" placement="bottom">
+                <button className={cx("action-btn")}>
+                  <BiMessageAltDetail />
+                </button>
+              </Tippy>
+
+              <Tippy content="Messages" placement="bottom">
+                <button className={cx("action-btn")}>
+                  <IoPaperPlaneOutline />
+                </button>
+              </Tippy>
+            </>
+          ) : (
+            <>
+              <Button text>Upload</Button>
+              <Button primary>Log in</Button>
+              
+            </>
+          )}
           <Menu
-            items ={MENU_ITEMS}
+            items ={ currentUser ? userMenu : MENU_ITEMS}
+            onChange = {handleMenuChange}
             >
-            <button className={cx("btn-more")}>
-              <BiDotsVerticalRounded />
-            </button>
+            {currentUser ? (
+              <img src ="https://p16-sign-useast2a.tiktokcdn.com/tos-useast2a-avt-0068-giso/22d1d53f0bf2433195997f6db109877a~c5_100x100.jpeg?x-expires=1693706400&x-signature=uQ7mwXT6DGSqaJ%2FD%2BfoFl57e1oE%3D" 
+              className={cx("user-avatar")} 
+              alt="asa"/>
+            ) : (
+              <button className={cx("btn-more")}>
+                  <BiDotsVerticalRounded />
+                </button>
+              )}
           </Menu>
-
-
         </div>
       </div>
     </header>

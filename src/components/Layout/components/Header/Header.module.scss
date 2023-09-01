@@ -7,6 +7,7 @@
   .inner {
     height: 100%;
     width: var(--default-layout-width);
+    padding: 0px var(--default-layout-horizontal-spacer);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -90,11 +91,24 @@
     .actions {
       display: flex;
       align-items: center;
+      .action-btn {
+        font-size: 2.6rem;
+        padding: 0px 8px;
+      }
+      .user-avatar {
+        height: 32px;
+        width: 32px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-left: 20px;
+        cursor: pointer;
+      }
       .btn-more {
         background-color: transparent;
         font-size: 1.8em;
         height: 28px;
         padding: 0px 8px;
+        cursor: pointer;
       }
      
     }
