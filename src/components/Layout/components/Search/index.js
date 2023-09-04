@@ -34,10 +34,20 @@ function Search() {
     const fetchApi = async () => {
       setLoading(true);
 
-      const result = await searchServices.search(debounce);
-      setSearchResult(result);
+      // const result = await searchServices.search(debounce);
+      // setSearchResult(result);
 
-      setLoading(false);
+      // setLoading(false);
+
+      fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounce)}&type=less`)
+      .then(res => res.json())
+      .then ((res) => {
+        setSearchResult(res.data);
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      })
     }
 
     fetchApi();
