@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { Wrapper as PopperWrapper } from "~/components/Popper";
 import AccountItem from "./../../../AccountItems";
 import {useDebounce} from "~/hooks";
+import * as searchServices from "~/apiServices/searchServices";
 
 import classNames from "classnames/bind";
 import styles from "./Search.module.scss";
@@ -30,16 +31,17 @@ function Search() {
       return;
     }
 
-    setLoading(true);
+    const fetchApi = async () => {
+      setLoading(true);
 
-    fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounce)}&type=less`)
-    .then(res => res.json())
-    .then (res => {
-      setSearchResult(res.data);
+      const result = await searchServices.search(debounce);
+      setSearchResult(result);
+
       setLoading(false);
-    })
-    .catch(() => {setLoading(false);});
-  }, [debounce]);
+    }
+
+    fetchApi();
+    }, [debounce]);
 
   const handleClear = () => {
     inputRef.current.focus();
