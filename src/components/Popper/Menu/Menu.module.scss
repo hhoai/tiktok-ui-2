@@ -23,6 +23,9 @@
   }
   .menu-popper {
     // padding: 8px 0px;
+    .menu-body {
+      overflow-y: auto;
+    }
   }
 }
 
@@ -30,6 +33,7 @@
 .header {
   position: relative;
   height: 50px;
+  flex-shrink: 0;
   .back-btn {
     cursor: pointer;
     width: 50px;
