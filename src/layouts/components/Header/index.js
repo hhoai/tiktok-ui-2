@@ -25,7 +25,7 @@ const MENU_ITEMS = [
     icon: <TbMessageLanguage/>,
     title: "English",
     children: {
-      title: "English",
+      title: "Language",
       data: [
         {
           type: "language",
