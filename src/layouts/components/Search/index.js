@@ -2,9 +2,9 @@ import HeadlessTippy from "@tippyjs/react/headless";
 import { useState, useEffect, useRef } from "react";
 
 import { Wrapper as PopperWrapper } from "~/components/Popper";
-import AccountItem from "./../../../AccountItems";
+import AccountItem from "./../../../components/AccountItems";
 import { useDebounce } from "~/hooks";
-import * as searchServices from "~/apiServices/searchServices";
+import * as searchServices from "~/services/searchService";
 
 import classNames from "classnames/bind";
 import styles from "./Search.module.scss";

@@ -9,7 +9,7 @@ import Search from '../Search';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
 import Image from '~/components/Image';
-import routeConfig from '~/config/routes/';
+import config from '~/config';
 
 import { AiOutlineCloudUpload, AiOutlineQuestionCircle } from 'react-icons/ai';
 import { BiBookmark, BiUser, BiDotsVerticalRounded, BiMessageAltDetail } from 'react-icons/bi';
@@ -96,7 +96,7 @@ function Header() {
     <header className={cx("wrapper")}>
       <div className={cx("inner")}>
         {/* logo */}
-        <Link to={routeConfig.home}>
+        <Link to={config.routes.home}>
           <div className={cx("logo")}>
             <svg xmlns="http://www.w3.org/2000/svg" width="118" height="42" fill="currentColor" alt="TikTok">
               <path fill="#25F4EE" d="M9.875 16.842v-1.119A8.836 8.836 0 0 0 8.7 15.64c-4.797-.006-8.7 3.9-8.7 8.707a8.706 8.706 0 0 0 3.718 7.135A8.675 8.675 0 0 1 1.38 25.55c0-4.737 3.794-8.598 8.495-8.707Z"></path>
